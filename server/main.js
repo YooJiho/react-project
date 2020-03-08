@@ -12,12 +12,12 @@ app.use('/', express.static(path.join(__dirname, '../public')));
 
 app.get('/main', (req, res) => {
     return res.send('Hello World');
-});
+}); 
 
 app.listen(port, () => {
     console.log('Express is listening on port', port);
 });
-console.log(process.env.NODE_ENV);
+
 if (process.env.NODE_ENV == 'development') {
     console.log('Server is running on development mode');
     const config = require('../webpack.dev.config');

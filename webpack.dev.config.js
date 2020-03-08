@@ -1,6 +1,8 @@
 var webpack = require('webpack');
 
 module.exports = {
+    mode : 'development',
+
     entry : [
         './src/index.js',
         'webpack-dev-server/client?http://0.0.0.0:8080',
