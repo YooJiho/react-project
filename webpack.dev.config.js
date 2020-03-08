@@ -15,11 +15,11 @@ module.exports = {
     devServer : {
         hot : true,
         filename : 'bundle.js',
-        publickPath : '/',
+        publicPath : '/',
         historyApiFallback : true,
         contentBase : './public',
         proxy : {
-            "**" : "http://localhost:8080"
+            "**" : "http://localhost:3000"
         },
         stats : {
             assets : false,
@@ -32,16 +32,10 @@ module.exports = {
         }
     },
 
-    plugins : [
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
-    ],
-    
     module : {
         rules : [
             {
-                test: /.js$/,
+                test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
                 query: {
@@ -49,5 +43,11 @@ module.exports = {
                 }
             }
         ]
-    }
+    },
+
+    plugins : [
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoEmitOnErrorsPlugin()
+    ],
 }

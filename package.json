@@ -19,8 +19,8 @@
     "clean": "rm -rf build public/bundle.js",
     "build": "babel server --out-dir build --presets=es2015 && webpack",
     "start": "cross-env NODE_ENV=production node ./build/main.js",
-    "development": "cross-env NODE_ENV=development nodemon --exec ./server/main.js --watch server"
-  },
+    "development": "cross-env NODE_ENV=development nodemon --exec babel-node ./server/main.js --watch server"
+  }, 
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -39,6 +39,7 @@
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.6",
+    "@babel/node": "^7.8.7",
     "@babel/preset-env": "^7.8.6",
     "@babel/preset-es2015": "^7.0.0-beta.53",
     "@babel/preset-react": "^7.8.3",
