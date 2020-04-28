@@ -19,7 +19,11 @@ app.use(bodyParser.json());
 app.use('/', express.static(path.join(__dirname, '../public')));
 app.use('/api', api);
 
-// mongo db connection
+/* mongo db connection
+  * cmd
+  * 1. mongod
+  * 2. mongo
+*/
 const db = mongoose.connection;
 db.on('error', console.error);
 db.once('open', () => { console.log('Connected to mongodb server'); });

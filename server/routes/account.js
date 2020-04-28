@@ -3,6 +3,14 @@ import Account from '../models/account';
 
 const router = express.Router();
 
+/*
+    ACCOUNT SIGNUP: POST /api/account/signup
+    BODY SAMPLE: { "username": "test", "password": "test" }
+    ERROR CODES:
+        1: BAD USERNAME
+        2: BAD PASSWORD
+          3: USERNAM EXISTS
+*/
 router.post('/signup', (req, res) => {
     let usernameRegex = /^[a-z0-9]+$/;
 
@@ -44,6 +52,12 @@ router.post('/signup', (req, res) => {
     });
 });
 
+/*
+    ACCOUNT SIGNIN: POST /api/account/signin
+    BODY SAMPLE: { "username": "test", "password": "test" }
+    ERROR CODES:
+        1: LOGIN FAILED
+*/
 router.post('/signin', (req, res) => {
     res.json({ success : true });
 });
