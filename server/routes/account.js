@@ -9,7 +9,7 @@ const router = express.Router();
     ERROR CODES:
         1: BAD USERNAME
         2: BAD PASSWORD
-          3: USERNAM EXISTS
+        3: USERNAM EXISTS
 */
 router.post('/signup', (req, res) => {
     let usernameRegex = /^[a-z0-9]+$/;
@@ -59,7 +59,38 @@ router.post('/signup', (req, res) => {
         1: LOGIN FAILED
 */
 router.post('/signin', (req, res) => {
-    res.json({ success : true });
+    if  (typeof req.body.password !== 'string') {
+        return res.status(401).json({
+            error : "LOGIN FAILED",
+            code : 1
+        });
+    }
+
+    Account.findOne({ username : req.body.username }, (err, account) => {
+        if (err) throw err;
+        
+        if (!account) {
+            return res.status(401).json({
+                error : "LOGIN FAILED",
+                code : 1
+            });
+        }
+
+        if (!account.validateHash(req.body.password)) {
+            return res.status(401).json({
+                error : "LOGIN FAILED",
+                code : 1
+            });
+        }
+
+        let session = req.session;
+        session.loginInfo = {
+            _id: account._id,
+            username: account.username
+        };
+
+        res.json({ success : true });
+    });
 });
 
 router.get('/getinfo', (req, res) => {

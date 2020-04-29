@@ -16,9 +16,6 @@ const devPort = 8080;
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
-app.use('/', express.static(path.join(__dirname, '../public')));
-app.use('/api', api);
-
 /* mongo db connection
   * cmd
   * 1. mongod
@@ -35,6 +32,9 @@ app.use(session({
     resave : false,
     saveUninitialized : true
 }));
+
+app.use('/', express.static(path.join(__dirname, '../public')));
+app.use('/api', api);
 
 app.get('/main', (req, res) => {
     return res.send('Hello World');
