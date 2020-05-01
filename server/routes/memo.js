@@ -33,7 +33,7 @@ router.post('/', (req, res) => {
 
     memo.save(err => {
         if (err) throw err;
-        return res.json({ sucess : true });
+        return res.json({ success : true });
     })
 });
 
@@ -47,9 +47,17 @@ router.delete('/:id', (req, res) => {
 
 });
 
-// GET MEMO LIST
+/*
+    READ MEMO: GET /api/memo
+*/
 router.get('/', (req, res) => {
-
+    Memo.find()
+    .sort({ "_id" : -1 })
+    .limit(6)
+    .exec((err, memos) => {
+        if (err) throw err;
+        res.json(memos);
+    })
 });
 
 export default router;
