@@ -33,6 +33,12 @@ app.use(session({
     saveUninitialized : true
 }));
 
+/* handle error */
+app.use(function(err, req, res, next) {
+    console.log(err.stack);
+    res.status(500).send('Something broke!');
+});
+
 app.use('/', express.static(path.join(__dirname, '../public')));
 app.use('/api', api);
 

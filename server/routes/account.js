@@ -106,7 +106,14 @@ router.get('/getinfo', (req, res) => {
     res.json({ info : req.session.loginInfo });
 });
 
+/*
+    LOGOUT: POST /api/account/logout
+*/
 router.post('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) throw err;
+    });
+
     res.json({ success : true });
 });
 
