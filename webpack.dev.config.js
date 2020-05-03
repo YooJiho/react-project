@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
     mode : 'development',
@@ -6,7 +7,8 @@ module.exports = {
     entry : [
         './src/index.js',
         'webpack-dev-server/client?http://0.0.0.0:8080',
-        'webpack/hot/only-dev-server'
+        'webpack/hot/only-dev-server',
+        './src/css/style.css',
     ],
 
     output : {
@@ -38,13 +40,22 @@ module.exports = {
         rules : [
             {
                 test: /\.js$/,
-                loader: 'babel-loader',
+                use : {
+                    loader: 'babel-loader',
+                },
                 exclude: /node_modules/,
-                query: {
-                    cacheDirectory: true
-                }
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
             }
         ]
+    },
+
+    resolve: {
+        alias:{
+            ROOT :  path.resolve(__dirname, ' src/')
+        }
     },
 
     plugins : [

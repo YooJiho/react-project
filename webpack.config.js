@@ -1,9 +1,13 @@
-//var webpack = require('webpack');
+var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
     mode : 'production',
 
-    entry: './src/index.js',
+    entry: [
+            './src/index.js',
+            './src/css/style.css',
+    ],
 
     output: {
         path: __dirname + '/public/',
@@ -14,12 +18,21 @@ module.exports = {
         rules : [
             {
                 test: /\.js$/,
-                loader: 'babel-loader',
+                use : {
+                    loader: 'babel-loader',
+                },
                 exclude: /node_modules/,
-                query: {
-                    cacheDirectory: true
-                }
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
             }
         ]
+    },
+
+    resolve: {
+        alias:{
+            ROOT :  path.resolve(__dirname, ' src/')
+        }
     }
 };
