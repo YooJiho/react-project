@@ -32,7 +32,7 @@ module.exports = {
 
     resolve: {
         alias:{
-            ROOT :  path.resolve(__dirname, ' src/')
+            ROOT :  path.resolve(__dirname, 'src/')
         }
     }
 };
