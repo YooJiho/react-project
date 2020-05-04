@@ -42,8 +42,8 @@ app.use(function(err, req, res, next) {
 app.use('/', express.static(path.join(__dirname, '../public')));
 app.use('/api', api);
 
-app.get('/main', (req, res) => {
-    return res.send('Hello World');
+app.get('*', (req, res) => {
+    return res.sendFile(path.resolve(__dirname, './../public/index.html'));
 }); 
 
 app.listen(port, () => {
