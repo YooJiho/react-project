@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { App, Home, Login, Register } from 'ROOT/containers';
+import { Top, Home, Login, Register } from 'ROOT/containers';
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
 <Router>
-    <App />
+    <Top />
     <Route exact path="/" component={ Home } />
     <Route path="/home" component={ Home } />
     <Route path="/login" component={ Login } />
